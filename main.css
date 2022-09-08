@@ -1,0 +1,55 @@
+header {
+    background-color: #10a554;
+}
+
+footer {
+    padding: 10px;
+    background-color: #10a554;
+}
+
+a:link {
+    text-decoration: none;
+  }
+
+a:hover {
+    color: #4b75ff;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: blue;
+  }
+
+#header-logo {
+    padding: 8px;
+}
+
+#user-navigation {
+    float: right;
+}
+
+#general-navigation {
+    padding: 8px;
+}
+
+#index {
+    padding-top: 10%;
+    padding-left: 10%;
+    padding-bottom: 10%;
+}
+
+#plant-image {
+    width: 10px;
+}
+
+.float-right {
+    float: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.description {
+    padding-right: 30%;
+}
