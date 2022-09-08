@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>System of Linear Congruences</title>
+    </head>
+    <body>
+        <br><br><br><div class="center">
+            <h1>Input integer coefficients to solve the system of linear congruences</h1>
+            <h2><input placeholder="a" type="number" id="a1">x + <input placeholder="b" type="number" id="b1">y ≡ <input placeholder="c" type="number" id="c1"> (mod n)</h2>
+            <h2><input placeholder="a" type="number" id="a2">x + <input placeholder="b" type="number" id="b2">y ≡ <input placeholder="c" type="number" id="c2"> (mod n)</h2>
+            <h2>In the congruence class ℤ<sub><input placeholder="n" type="number" id="n" min="1"></sub></h2>
+            <button id="preview">Preview Matrix Equation</button><button id="solve" style="float: right">Solve</button>
+            <div class="hidden" id="matx">
+                <h2>
+                    <table>
+                    <tr>
+                        <td class="inner-mat" id="t_a1">⌈a1</td>
+                        <td id="t_b1">b1⌉</td>
+                        <td id="t_x">⌈x⌉</td>
+                        <td class="inner-mat" >_ </td>
+                        <td id="t_c1">⌈c1⌉</td>
+                    </tr>
+                    <tr>
+                        <td class="inner-mat" id="t_a2">⌊a2</td>
+                        <td id="t_b2">b2⌋</td>
+                        <td id="t_y">⌊y⌋</td>
+                        <td class="inner-mat" >̅</td>
+                        <td id="t_c2">⌊c2⌋</td>
+                    </tr>
+                </table>
+                </h2>
+            </div>
+            <div id="result" class="hidden">
+                <h1>Results in ℤ<sub id="sub_n"></sub></h1>
+                <h2>
+                    <table>
+                        <tr>
+                            <th>A = </th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td class="inner-mat" id="t2_a1">⌈a1</td>
+                                        <td id="t2_b1">b1⌉</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inner-mat" id="t2_a2">⌊a2</td>
+                                        <td id="t2_b2">b2⌋</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>det(A) = </th>
+                            <td id="det">c</td>
+                        </tr>
+                        <tr>
+                            <th>det(A)<sup>-1</sup> = </th>
+                            <td id="det_i">c</td>
+                        </tr>
+                        <tr>
+                            <th>A<sup>-1</sup> = </th>
+                            <td><table>
+                                <tr>
+                                    <td class="inner-mat" id="t3_a1">⌈a1</td>
+                                    <td id="t3_b1">b1⌉</td>
+                                </tr>
+                                <tr>
+                                    <td class="inner-mat" id="t3_a2">⌊a2</td>
+                                    <td id="t3_b2">b2⌋</td>
+                                </tr>
+                            </table></td>
+                        </tr>
+                        <tr>
+                            <th>Solution = </th>
+                            <td><table>
+                                <tr>
+                                    <td class="inner-mat" id="t4_s1">⌈s1⌉</td>
+                                </tr>
+                                <tr>
+                                    <td class="inner-mat" id="t4_s2">⌊s2⌋</td>
+                                </tr>
+                            </table></td>
+                        </tr>
+                    </table>
+                </h2>
+            </div>
+        </div><br><br><br>
+    </body>
+</html>
+<style>
+    input {
+        width: 45px;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+        margin: auto;
+    }
+    table th, table td{
+        text-align: center;
+    }
+    .inner-mat {
+        padding: 0 15px;
+    }
+    .center {
+        margin: auto;
+        width: 75%;
+        border: 3px solid green;
+        padding: 10px;
+    }
+</style>
+<script>
+    var $ = function(id) { return document.getElementById(id); };
+
+    window.onload = function() {
+        $("preview").onclick = preview;
+        $("solve").onclick = solve;
+
+        function preview() {
+            var a1 = document.getElementById("a1").value;
+            var b1 = document.getElementById("b1").value;
+            var c1 = document.getElementById("c1").value;
+            var a2 = document.getElementById("a2").value;
+            var b2 = document.getElementById("b2").value;
+            var c2 = document.getElementById("c2").value;
+            var n = document.getElementById("n").value;
+
+            document.getElementById("matx").style.display = "block";
+            document.getElementById("t_a1").innerHTML = "⌈" + a1 + " (mod " + n + ")";
+            document.getElementById("t_b1").innerHTML = b1 + " (mod " + n + ")⌉" ;
+            document.getElementById("t_c1").innerHTML = "⌈" + c1 + " (mod " + n + ")⌉" ;
+            document.getElementById("t_a2").innerHTML = "⌊" + a2 + " (mod " + n + ")";
+            document.getElementById("t_b2").innerHTML = b2 + " (mod " + n + ")⌋" ;
+            document.getElementById("t_c2").innerHTML = "⌊" + c2 + " (mod " + n + ")⌋" ;
+        }
+
+        function solve() {
+            var mod = function (x, y) {
+                var r = x % y;
+                return Math.floor(r >= 0 ? r : r + y);
+            };
+
+            var a1 = document.getElementById("a1").value;
+            var b1 = document.getElementById("b1").value;
+            var c1 = document.getElementById("c1").value;
+            var a2 = document.getElementById("a2").value;
+            var b2 = document.getElementById("b2").value;
+            var c2 = document.getElementById("c2").value;
+            var n = parseInt(document.getElementById("n").value);
+
+            var det = mod(((a1 * b2) - (b1 * a2)), n);
+            var det_i = 0;
+            var swap = [b2,-1 * b1, -1 * a2, a1];
+            var rem = [0,0,0,0]
+            var inv = [0,0,0,0];
+            var res = [0,0];
+
+            // find coefficients in Zn
+            for (i=0;i<inv.length;i++)
+            {
+                rem[i] = mod(swap[i],n);
+            }
+            // find inverse of determinant in Zn
+            for (i=1; i<n; i++)
+            {
+                if ((det * i) % n === 1) {det_i = i;}
+            }
+            // if the determinant is nonzero i.e., an invertible matrix
+            if (det_i !== 0)
+            {
+                // find inverse matrix
+                for (i=0;i<inv.length;i++)
+                {
+                    inv[i] = mod((det_i * rem[i]),n);
+                }
+                // dot product
+                res = [mod(((inv[0] * c1) + (inv[1] * c2)), n), mod(((inv[2] * c1) + (inv[3] * c2)), n)];
+
+                // update DOM
+                document.getElementById("sub_n").innerHTML = n;
+                document.getElementById("t2_a1").innerHTML = "⌈" + a1;
+                document.getElementById("t2_b1").innerHTML = b1 + "⌉";
+                document.getElementById("t2_a2").innerHTML = "⌊" + a2;
+                document.getElementById("t2_b2").innerHTML = b2 + "⌋";
+                document.getElementById("det").innerHTML = det.toString();
+                document.getElementById("det_i").innerHTML = det_i;
+                document.getElementById("t3_a1").innerHTML = "⌈" + inv[0].toString();
+                document.getElementById("t3_b1").innerHTML = inv[1].toString() + "⌉";
+                document.getElementById("t3_b1").style.display = "block";
+                document.getElementById("t3_a2").innerHTML = "⌊" + inv[2].toString();
+                document.getElementById("t3_a2").style.display = "block";
+                document.getElementById("t3_b2").innerHTML = inv[3].toString() + "⌋";
+                document.getElementById("t3_b2").style.visibility = "visible";
+                document.getElementById("t4_s1").innerHTML = "⌈" + res[0] + "⌉";
+                document.getElementById("t4_s2").innerHTML = "⌊" + res[1] + "⌋";
+                document.getElementById("t4_s2").style.display = "block";
+                document.getElementById("result").style.display = "block";
+            }
+            else
+            {
+                // update DOM
+                document.getElementById("sub_n").innerHTML = n;
+                document.getElementById("t2_a1").innerHTML = "⌈" + a1;
+                document.getElementById("t2_b1").innerHTML = b1 + "⌉";
+                document.getElementById("t2_a2").innerHTML = "⌊" + a2;
+                document.getElementById("t2_b2").innerHTML = b2 + "⌋";
+                document.getElementById("det").innerHTML = det.toString();
+                document.getElementById("det_i").innerHTML = det_i;
+                document.getElementById("t3_a1").innerHTML = "undefined";
+                document.getElementById("t3_b1").style.display = "none";
+                document.getElementById("t3_a2").style.display = "none";
+                document.getElementById("t3_b2").style.visibility = "hidden";
+                document.getElementById("t4_s1").innerHTML = "N/A";
+                document.getElementById("t4_s2").style.display = "none";
+                document.getElementById("result").style.display = "block";
+            }
+        }
+    }
+</script>
