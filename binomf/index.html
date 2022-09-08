@@ -6,10 +6,18 @@
         <!-- TypeSet -->
         <script>MathJax = {tex: {inlineMath: [['@@', '@@'], ['\\(', '\\)']]}};</script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <script src="main.js"></script>
     </head>
     <body>
         <br><br><br><div class="center">
-            <h1>Input</h1>
+            <h1>Binomial Expansion: @@n\in\mathbb{N}\Rightarrow(a+b)^n=\Large\sum_{k=0}^{n}\Large\small\begin{pmatrix} n \\ k \end{pmatrix}\small a^{n-k}b^k@@</h1>
+            <label for="n">@@n=@@ </label><input type="number" id="n" min="1" style="width: 5em" onchange="EnableDisable(this)">
+            <button id="expand" disabled style="float: right;">Expand</button>
+            <div id="result" style="display: none">
+                <hr><p>Note: @@\begin{pmatrix} n \\ k \end{pmatrix}=\frac{n!}{k!(n-k)!}@@</p>
+                <p>and @@n!=n*(n-1)*\cdots*2*1@@</p><hr>
+                <p>@@(a+b)@@<span id="yn"></span> @@=@@ <span id="ye"></span></p>
+            </div>
         </div><br><br><br>
     </body>
 </html>
@@ -21,3 +29,13 @@
         padding: 10px;
     }
 </style>
+<script type="text/javascript">
+    function EnableDisable(t) {
+        var b = document.getElementById("expand");
+        if (t.value.trim() != "") {
+            b.disabled = false;
+        } else {
+            b.disabled = true;
+        }
+    };
+</script>
