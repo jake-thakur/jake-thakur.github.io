@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>brancher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.01">
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!--Night Mode Plugin-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="jquery-night-mode-master/css/night-mode.css"/>
+    <script src="jquery-night-mode-master/js/jquery.night.mode.js"></script>
+    <!--MathJax-->
+    <script>MathJax = {tex: {inlineMath: [['@@', '@@'], ['\\(', '\\)']]}};</script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<!-- navigation -->
+<div id="navbar">
+    <a id="money" title=""></a><a>|</a>
+    <a id="a_inventory" title="open inventory: view your items" class="clickable">inventory</a>
+    <a id="a_endings" title="open list of endings" class="clickable">endings</a>
+    <a id="a_path" href="#path" title="view your traversal tree" class="clickable">path</a>
+    <a id="a_progress" title="" style="float: right;" class="clickable">
+        <progress id="progress" title="" value="0" max="6"></progress>
+    </a>
+</div>
+<!-- inventory -->
+<div id="inventory" class="inventory">
+    <ul id="array" class="array">
+        <li>nothing to see here</li>
+    </ul>
+</div><br>
+<div id="frame" class="frame">
+    <p id="story">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    <p id="decoration">---</p>
+    <p id="prompt">lorem ipsum</p><br>
+    <br><div>
+        <input id="left" type="button" value="branch left" class="left-btn">
+        <input id="end" type="button" value="view ending" class="end-btn">
+        <input id="right" type="button" value="branch right" class="right-btn">
+        <input id="quit" type="button" value="quit" title="this will reset your endings" class="left-btn" style="display: none">
+        <input id="restart" type="button" value="restart" title="this will not reset your endings" class="right-btn" style="display: none">
+    </div>
+</div>
+<img id="path" class="path" src="images/brancher.png" alt="Traversal Tree">
+<!-- endings -->
+<script>
+    var popupWindow = null;
+    function centeredPopup(url,winName,w,h,scroll){
+    LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+    TopPosition = 100;
+    settings =
+    'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
+    popupWindow = window.open(url,winName,settings)}
+</script>
+<div id="endings_list" class="endings">
+    <a id="e1" class="disabled" href="endings/1.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #1</a>
+    <a id="e2" class="disabled" href="endings/2.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #2</a>
+    <a id="e3" class="disabled" href="endings/3.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #3</a>
+    <a id="e4" class="disabled" href="endings/4.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #4</a>
+    <a id="e5" class="disabled" href="endings/5.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #5</a>
+    <a id="e6" class="disabled" href="endings/6.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #6</a>
+    <a id="e7" class="disabled" href="endings/7.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #7</a>
+    <a id="e8" class="disabled" href="endings/8.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #8</a>
+    <a id="e9" class="disabled" href="endings/9.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #9</a>
+    <a id="e10" class="disabled" href="endings/10.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #10</a>
+    <a id="e11" class="disabled" href="endings/11.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #11</a>
+    <a id="e12" class="disabled" href="endings/12.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #12</a>
+    <a id="e13" class="disabled" href="endings/13.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #13</a>
+    <a id="e14" class="disabled" href="endings/14.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #14</a>
+    <a id="e15" class="disabled" href="endings/15.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #15</a>
+    <a id="e16" class="disabled" href="endings/16.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #16</a>
+    <a id="e17" class="disabled" href="endings/17.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #17</a>
+    <a id="e18" class="disabled" href="endings/18.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #18</a>
+    <a id="e19" class="disabled" href="endings/19.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #19</a>
+    <a id="e20" class="disabled" href="endings/20.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #20</a>
+    <a id="e21" class="disabled" href="endings/21.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #21</a>
+    <a id="e22" class="disabled" href="endings/22.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #22</a>
+    <a id="e23" class="disabled" href="endings/23.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #23</a>
+    <a id="e24" class="disabled" href="endings/24.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #24</a>
+    <a id="e25" class="disabled" href="endings/25.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #25</a>
+    <a id="e26" class="disabled" href="endings/26.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #26</a>
+    <a id="e27" class="disabled" href="endings/27.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #27</a>
+    <a id="e28" class="disabled" href="endings/28.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #28</a>
+    <a id="e29" class="disabled" href="endings/29.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #29</a>
+    <a id="e30" class="disabled" href="endings/30.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #30</a>
+    <a id="e31" class="disabled" href="endings/31.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #31</a>
+    <a id="e32" class="disabled" href="endings/32.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #32</a>
+    <a id="e33" class="disabled" href="endings/33.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #33</a>
+    <a id="e34" class="disabled" href="endings/34.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #34</a>
+    <a id="e35" class="disabled" href="endings/35.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #35</a>
+    <a id="e36" class="disabled" href="endings/36.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #36</a>
+    <a id="e37" class="disabled" href="endings/37.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #37</a>
+    <a id="e38" class="disabled" href="endings/38.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #38</a>
+    <a id="e39" class="disabled" href="endings/39.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #39</a>
+    <a id="e40" class="disabled" href="endings/40.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #40</a>
+    <a id="e41" class="disabled" href="endings/41.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #41</a>
+    <a id="e42" class="disabled" href="endings/42.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #42</a>
+    <a id="e43" class="disabled" href="endings/43.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #43</a>
+    <a id="e44" class="disabled" href="endings/44.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #44</a>
+    <a id="e45" class="disabled" href="endings/45.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #45</a>
+    <a id="e46" class="disabled" href="endings/46.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #46</a>
+    <a id="e47" class="disabled" href="endings/47.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #47</a>
+    <a id="e48" class="disabled" href="endings/48.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #48</a>
+    <a id="e49" class="disabled" href="endings/49.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #49</a>
+    <a id="e50" class="disabled" href="endings/50.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #50</a>
+    <a id="e51" class="disabled" href="endings/51.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #51</a>
+    <a id="e52" class="disabled" href="endings/52.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #52</a>
+    <a id="e53" class="disabled" href="endings/53.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #53</a>
+    <a id="e54" class="disabled" href="endings/54.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #54</a>
+    <a id="e55" class="disabled" href="endings/55.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #55</a>
+    <a id="e56" class="disabled" href="endings/56.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #56</a>
+    <a id="e57" class="disabled" href="endings/57.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #57</a>
+    <a id="e58" class="disabled" href="endings/58.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #58</a>
+    <a id="e59" class="disabled" href="endings/59.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #59</a>
+    <a id="e60" class="disabled" href="endings/60.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #60</a>
+    <a id="e61" class="disabled" href="endings/61.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #61</a>
+    <a id="e62" class="disabled" href="endings/62.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #62</a>
+    <a id="e63" class="disabled" href="endings/63.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #63</a>
+    <a id="e64" class="disabled" href="endings/64.html" onclick="centeredPopup(this.href,'myWindow','950','415','yes');return false">◦ Ending #64</a>
+</div>
+</body>
+</html>
