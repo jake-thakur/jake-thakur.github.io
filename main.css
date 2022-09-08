@@ -53,3 +53,9 @@ a:hover {
 .description {
     padding-right: 30%;
 }
+
+#projects {
+    padding-top: 5%;
+    padding-left: 10%;
+    padding-bottom: 5%;
+}
